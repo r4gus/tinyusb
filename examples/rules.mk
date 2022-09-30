@@ -71,6 +71,7 @@ SRC_S := $(SRC_S:.S=.s)
 # '_asm' suffix is added to object of assembly file
 OBJ += $(addprefix $(BUILD)/obj/, $(SRC_S:.s=_asm.o))
 OBJ += $(addprefix $(BUILD)/obj/, $(SRC_C:.c=.o))
+OBJ += $(ZIG_OBJ)
 
 # Verbose mode
 ifeq ("$(V)","1")
