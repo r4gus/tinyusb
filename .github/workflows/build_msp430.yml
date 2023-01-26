@@ -1,23 +1,11 @@
 name: Build MSP430
 
 on:
-  push:
-    paths:
-      - 'src/**'
-      - 'examples/**'
-      - 'lib/**'
-      - 'hw/**'
   pull_request:
-    branches: [ master ]
-    paths:
-      - 'src/**'
-      - 'examples/**'
-      - 'lib/**'
-      - 'hw/**'
-
-concurrency:
-  group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
-  cancel-in-progress: true
+  push:
+  release:
+    types:
+      - created
 
 jobs:  
   build-msp430:
@@ -28,12 +16,9 @@ jobs:
         family:
         # Alphabetical order
         - 'msp430'
-
     steps:
     - name: Setup Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.x'
+      uses: actions/setup-python@v2
 
     - name: Checkout TinyUSB
       uses: actions/checkout@v3
@@ -51,7 +36,7 @@ jobs:
       run: echo >> $GITHUB_ENV TOOLCHAIN_URL=http://software-dl.ti.com/msp430/msp430_public_sw/mcu/msp430/MSPGCC/9_2_0_0/export/msp430-gcc-9.2.0.50_linux64.tar.bz2
 
     - name: Cache Toolchain
-      uses: actions/cache@v3
+      uses: actions/cache@v2
       id: cache-toolchain
       with:
         path: ~/cache/
@@ -76,8 +61,7 @@ jobs:
     - name: Linker Map
       run: |
         pip install linkermap/
-        # find -quit to only print linkermap of 1 board per example
-        for ex in `ls -d examples/device/*/`
-        do
-          find ${ex} -name *.map -print -quit | xargs -I % sh -c 'echo "::group::%"; linkermap -v %; echo "::endgroup::"'
+        for ex in `ls -d examples/device/*/`; do \
+          find ${ex} -name *.map -print -quit | \
+          xargs -I % sh -c 'echo "::group::%"; linkermap -v %; echo "::endgroup::"'; \
         done

@@ -25,7 +25,7 @@
  */
 
 /** \ingroup group_board
- *  \defgroup group_ansi_esc ANSI Escape Code
+ *  \defgroup group_ansi_esc ANSI Esacpe Code
  *  @{ */
 
 #ifndef _TUSB_ANSI_ESC_CODE_H_

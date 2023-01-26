@@ -22,7 +22,7 @@
  * ntddndis.h modified by Benedikt Spranger <b.spranger@pengutronix.de>
  * 
  * Thanks to the cygwin development team, 
- * especially to Casper S. Hornstrup <chorns@users.sourceforge.net>
+ * espacially to Casper S. Hornstrup <chorns@users.sourceforge.net>
  * 
  * THIS SOFTWARE IS NOT COPYRIGHTED
  *
