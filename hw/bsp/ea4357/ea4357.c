@@ -272,7 +272,9 @@ uint32_t board_button_read(void)
 
 int board_uart_read(uint8_t* buf, int len)
 {
-  return Chip_UART_Read(UART_DEV, buf, len);
+  //return UART_ReceiveByte(BOARD_UART_DEV);
+  (void) buf; (void) len;
+  return 0;
 }
 
 int board_uart_write(void const * buf, int len)

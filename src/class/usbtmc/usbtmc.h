@@ -158,7 +158,7 @@ enum {
   USBTMC_BULK_IN_ERR_DATA_TOO_SHORT = 4u,
   USBTMC_BULK_IN_ERR_DATA_TOO_LONG = 5u,
 };
-// built-in halt errors
+// bult-in halt errors
 enum {
   USBTMC_BULK_IN_ERR = 1u, ///< receives a USBTMC command message that expects a response while a
                            /// Bulk-IN transfer is in progress

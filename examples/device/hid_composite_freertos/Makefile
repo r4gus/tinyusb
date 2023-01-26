@@ -28,15 +28,8 @@ SRC_C += \
 	$(FREERTOS_SRC)/timers.c \
 	$(subst ../../../,,$(wildcard ../../../$(FREERTOS_SRC)/portable/GCC/$(FREERTOS_PORT)/*.c))
 
-# include heap manage if configSUPPORT_DYNAMIC_ALLOCATION = 1
-# SRC_C += $(FREERTOS_SRC)/portable/MemMang/heap_1.c
-# CFLAGS += -Wno-error=sign-compare
-
-# Suppress FreeRTOSConfig.h warnings
-CFLAGS += -Wno-error=redundant-decls
-
-# Suppress FreeRTOS source warnings
-CFLAGS += -Wno-error=cast-qual
+# Suppress FreeRTOS warnings
+CFLAGS += -Wno-error=cast-qual -Wno-error=redundant-decls
 
 # FreeRTOS (lto + Os) linker issue
 LDFLAGS += -Wl,--undefined=vTaskSwitchContext
